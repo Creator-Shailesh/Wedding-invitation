@@ -3,66 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Wedding Invitation</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #f9f9f9; }
-        .countdown { font-size: 2em; color: #d9534f; }
-        .header { background: url('https://website.com/header-image.jpg') no-repeat center; padding: 100px; color: white; text-align: center; }
-        .footer { text-align: center; padding: 20px; }
+        body { font-family: Arial, sans-serif; }
+        .countdown { font-size: 50px; color: #d9534f; }
+        .section { padding: 50px 0; text-align: center; }
+        .fade-in { animation: fadeIn 1s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Join Us for Our Wedding</h1>
-        <p>John & Jane</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="fade-in">You're Invited!</h1>
+                <p class="fade-in">Join us for a beautiful wedding celebration.</p>
+                <div id="countdown" class="countdown fade-in"></div>
+            </div>
+        </div>
     </div>
 
-    <div class="container text-center mt-5">
-        <h2>Wedding Details</h2>
-        <p>Date: April 30, 2026</p>
-        <p>Time: 4:00 PM</p>
-        <p>Venue: Beautiful Garden, City, State</p>
-        <div class="countdown">Time Remaining: <span id="countdown"></span></div>
+    <div class="section bg-light">
+        <div class="container">
+            <h2>Details</h2>
+            <p>The wedding will take place on <strong>March 26, 2026</strong> at <strong>5 PM</strong>.</p>
+        </div>
     </div>
 
-    <div class="container text-center mt-5">
-        <h2>Gallery</h2>
-        <img src="https://website.com/wedding-image1.jpg" alt="Wedding" class="img-fluid">
-        <img src="https://website.com/wedding-image2.jpg" alt="Wedding" class="img-fluid">
-    </div>
-
-    <div class="footer">
-        <p>Contact us at: wedding@example.com</p>
+    <div class="section bg-white">
+        <div class="container">
+            <h2>RSVP</h2>
+            <p>Please let us know if you can attend.</p>
+        </div>
     </div>
 
     <script>
-        // Set the date we're counting down to
-        var countDownDate = new Date("Apr 30, 2026 16:00:00").getTime();
-        
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result in the countdown element
-            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s ";
-
-            // If the countdown is over, display a message
+        // Countdown Timer
+        const weddingDate = new Date("March 26, 2026 17:00:00").getTime();
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
             if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "Wedding Has Started!";
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
             }
         }, 1000);
     </script>
-
 </body>
 </html>
